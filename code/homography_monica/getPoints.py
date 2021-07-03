@@ -1,3 +1,5 @@
+import numpy as np
+
 def getPoints(width,height,H):	
 	points=np.zeros((4,2))
 	point=np.zeros(3)

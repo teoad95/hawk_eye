@@ -48,7 +48,7 @@ def frame_detect(image):
     #find contours in threshold image     
     plt.imshow(res_gray)
     # plt.show()
-    im2,contours,hierarchy = cv2.findContours(res_gray,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    contours,hierarchy = cv2.findContours(res_gray,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
     prev = 0
     x_all = []

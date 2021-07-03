@@ -9,7 +9,7 @@ import os.path as op
 
 if __name__ == '__main__':
     
-    with open('matches.json') as json_file:
+    with open('code/matches.json') as json_file:
         data = json.load(json_file)
     # print(data)
     
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         
          # ----- Image from dictionary -----
          
-        if database_file_name_idx.split('/')[0] != 'train_normal':
+        if False:
             database_file_name = 'soccer_data/' + database_file_name_idx
             
             h_database_paths = database_file_name_idx.split('/')

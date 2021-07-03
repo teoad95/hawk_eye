@@ -3,9 +3,9 @@ import cv2
 import matplotlib.pyplot as plt
 from warpImage import warpImage
 
-bgr = cv2.imread("8.jpg").astype(np.uint8)
+bgr = cv2.imread("soccer_data/train_val/8.jpg").astype(np.uint8)
 inputIm = bgr[..., ::-1]
-bgr = cv2.imread("2.jpg").astype(np.uint8)
+bgr = cv2.imread("soccer_data/train_val/2.jpg").astype(np.uint8)
 inputIm2 = bgr[..., ::-1]
 H = ([[9.9334547e-02, 4.9523232e-01, 1.6050185e+02],
       [5.3051280e-02, 9.3862227e-01, -2.1331082e+02],

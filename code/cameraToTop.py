@@ -65,7 +65,7 @@ def transformAndShow(file_name, H, padding, top_left):
     # Change directory to appropriate perturbation
     # cv2.imwrite('trainA_pan/' + str(k)  + '.jpg', inputIm)
 
-    football_field = 'football_field.jpg'
+    football_field = 'code/football_field.jpg'
     football = cv2.imread(football_field).astype(np.uint8)
     footballIm = football[..., ::-1]
 

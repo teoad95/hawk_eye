@@ -1,4 +1,5 @@
 import numpy as np
+from numpy import save
 import cv2
 from matplotlib import path
 import matplotlib.pyplot as plt
@@ -104,12 +105,13 @@ def apply_perturbation(corners, transformed_corners, canvasIm, inputIm,
         for s in (zoom_val):
             edge_map_zoom, H_zoom, bad_image = apply_zoom(
                 shifted_corners, non_homo_corners, inputIm.shape, canvasIm, sx=s, sy=s)
-            plt.imshow(edge_map_zoom.astype('uint8'))
-            plt.title("Zoom" + str(idx) +'_'+str(int(s*100)))
-            plt.show()
+            # plt.imshow(edge_map_zoom.astype('uint8'))
+            # plt.title("Zoom" + str(idx) +'_'+str(int(s*100)))
+            # plt.show()
             if(bad_image == 0):
+                print('Saving ' + 'soccer_data/train_zoom/' + str(idx) +'_'+str(int(s*100))+'.jpg')
                 cv2.imwrite('soccer_data/train_zoom/' + str(idx) +'_'+str(int(s*100))+'.jpg', edge_map_zoom)
-                np.save('soccer_data/train_zoom/H' + str(idx)+'_'+str(int(s*100)), H_zoom)
+                save('soccer_data/train_zoom/H' + str(idx)+'_'+str(int(s*100)), H_zoom)
                 transformAndShow('soccer_data/train_zoom/' + str(idx) +'_'+str(int(s*100))+'.jpg', H_zoom, padding=0, top_left=(-x_min, -y_min))
 
         
@@ -117,10 +119,11 @@ def apply_perturbation(corners, transformed_corners, canvasIm, inputIm,
         for delta_theta in pan_val:
             edge_map_pan, H_pan, bad_image = apply_pan(
                 shifted_corners, non_homo_corners, inputIm.shape, canvasIm, delta_theta = delta_theta)
-            plt.imshow(edge_map_pan.astype('uint8'))
-            plt.title("Pan"+ str(idx) +'_'+str(int(delta_theta*100)))
-            plt.show()
+            # plt.imshow(edge_map_pan.astype('uint8'))
+            # plt.title("Pan"+ str(idx) +'_'+str(int(delta_theta*100)))
+            # plt.show()
             if(bad_image == 0):
+                print('Saving ' + 'soccer_data/train_pan/' + str(idx) +'_'+str(int(delta_theta*100))+'.jpg')
                 cv2.imwrite('soccer_data/train_pan/' + str(idx) +'_'+str(int(delta_theta*100))+'.jpg', edge_map_pan)
                 np.save('soccer_data/train_pan/H' + str(idx)+'_'+str(int(delta_theta*100)), H_pan)
                 transformAndShow('soccer_data/train_pan/' + str(idx)+'_'+str(int(delta_theta*100))+'.jpg', H_pan, padding=0, top_left=(-x_min, -y_min))
@@ -130,10 +133,11 @@ def apply_perturbation(corners, transformed_corners, canvasIm, inputIm,
         for t in tilt_val:
             edge_map_tilt, H_tilt, bad_image = apply_tilt(
                 shifted_corners, non_homo_corners, inputIm.shape, canvasIm, t = t)
-            plt.imshow(edge_map_tilt.astype('uint8'))
-            plt.title("Tilt" + str(idx) +'_'+str(int(t*100)))
-            plt.show()
+            # plt.imshow(edge_map_tilt.astype('uint8'))
+            # plt.title("Tilt" + str(idx) +'_'+str(int(t*100)))
+            # plt.show()
             if(bad_image == 0):
+                print('Saving ' + 'soccer_data/train_tilt/' + str(idx) +'_'+str(int(t*100))+'.jpg')
                 cv2.imwrite('soccer_data/train_tilt/' + str(idx) +'_'+str(int(t*100))+'.jpg', edge_map_tilt)
                 np.save('soccer_data/train_tilt/H' + str(idx)+'_'+str(int(t*100)), H_tilt)
                 transformAndShow('soccer_data/train_tilt/' + str(idx)+'_'+str(int(t*100))+'.jpg', H_tilt, padding=0, top_left=(-x_min, -y_min))
@@ -260,7 +264,7 @@ if __name__ == '__main__':
     for k in range(2, 210):
     
         file_name = 'soccer_data/train_val/' + str(k)
-        football_field = 'football_field.jpg'
+        football_field = 'code/football_field.jpg'
 
         with open('{}.homographyMatrix'.format(file_name)) as f:
             content = f.readlines()

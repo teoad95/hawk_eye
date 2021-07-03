@@ -2,10 +2,23 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
+def getPoints(width,height,H):	
+	points=np.zeros((4,2))
+	point=np.zeros(3)
+	point[2]=1
+	points[0]=(np.matmul(H,point.T)/np.matmul(H,point.T)[2])[:2]
+	point[1]=height-1
+	points[1]=(np.matmul(H,point.T)/np.matmul(H,point.T)[2])[:2]
+	point[0]=width-1
+	points[3]=(np.matmul(H,point.T)/np.matmul(H,point.T)[2])[:2]
+	point[1]=0
+	points[2]=(np.matmul(H,point.T)/np.matmul(H,point.T)[2])[:2]
+	return points,point
+
 def warpImage(inputIm, H):
 	width=inputIm.shape[1]
 	height=inputIm.shape[0]
-	points,point=getPoints(w,h,H)
+	points,point=getPoints(width,height,H)
 	min_xy=np.amin(points,axis=0)
 	max_xy=np.amax(points,axis=0)
 	w=int(max_xy[0]-min_xy[0])
@@ -40,5 +53,5 @@ if __name__ == '__main__':
     warpIm = np.zeros((h, w, 3), "uint8")
     result = cv2.warpPerspective(
         src=inputIm, dst=warpIm, M=H, dsize=(h, w))
-    plt.imshow()
+    plt.imshow(result)
     plt.show()

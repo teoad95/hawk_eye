@@ -13,7 +13,7 @@ descriptors = ['hog']
 
 hog = cv2.HOGDescriptor()
 
-query_path = './pix2pix_code/results/rgb2edge/test_latest/images'
+query_path = 'code/pix2pix_code/results/rgb2edge/test_latest/images'
 query_files = os.listdir(query_path)
 query_files = [op.join(query_path, file) for file in query_files if file[-8:] == 'fake.png']
 # query_files = [query_files]

@@ -204,8 +204,9 @@ def cv2warp(inputIm, H):
 
 
 if __name__ == '__main__':
+    #file_name = 'soccer_data/train_val/2'
     file_name = 'soccer_data/train_val/2'
-    football_field = 'football_field.jpg'
+    football_field = '/Users/thodoris/Documents/GitHub/Sport-analytics/Images/Highlights Real Madrid vs FC Barcelona (2-1)/frame42.jpg'
 
     with open('{}.homographyMatrix'.format(file_name)) as f:
         content = f.readlines()
@@ -215,7 +216,8 @@ if __name__ == '__main__':
     bgr = cv2.imread('{}.jpg'.format(file_name)).astype(np.uint8)
     inputIm = bgr[..., ::-1]
 
-    football = cv2.imread(football_field).astype(np.uint8)
+    football = cv2.imread(football_field)
+    football = football.astype(np.uint8)
     footballIm = football[..., ::-1]
 
     plt.imshow(footballIm)
